@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Tullvakt
 {
@@ -6,8 +7,6 @@ namespace Tullvakt
     {
         public Vehicle Vehicle { get; set; }
         public DateTime DateTime { get; set; }
-
-        public Tull(){}
 
         public Tull(Vehicle vehicle, DateTime dateTime)
         {
@@ -21,7 +20,6 @@ namespace Tullvakt
         private const int truckPrice = 2000;
         const double priceAdjustmentForMC = 0.7;
         private const double weekendPriceAdjustment = 2;
-        //private const int ecoCarPrice = 0;
 
         public double TotalPriceCalculator()
         {
@@ -40,29 +38,6 @@ namespace Tullvakt
                 price = basePrice * weekendPriceAdjustment;
             }
             
-            /*
-            if (Vehicle.Type == Vehicle.VehicleType.EcoCar)
-            {
-                price = ecoCarPrice;
-            }
-            else if (Vehicle.Type == Vehicle.VehicleType.Car && Vehicle.Weight > 1000)
-            {
-                price = heavyCarPrice;
-            }
-            else if (Vehicle.Type == Vehicle.VehicleType.Car && Vehicle.Weight <= 1000)
-            {
-                price = lightWeightCarPrice;
-            }
-            else if (isWeekend && Vehicle.Type == Vehicle.VehicleType.Car && Vehicle.Weight > 1000)
-            {
-                price = Convert.ToDouble(heavyCarPrice * weekendPriceAdjustment);
-            }
-            else if (isWeekend && Vehicle.Type == Vehicle.VehicleType.Car && Vehicle.Weight <= 1000)
-            {
-                price = Convert.ToDouble(heavyCarPrice * weekendPriceAdjustment);
-            }
-             */
-
             if (isEvening)
             {
                 price = basePrice * eveningPriceAdjustment;

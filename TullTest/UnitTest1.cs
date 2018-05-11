@@ -8,24 +8,24 @@ namespace TullTest
     public class UnitTest1
     {
         [TestMethod]
-        public void TestWeekendForHeavyCar()
+        public void TestWeekendPriceForHeavyCar()
         {
             Tull tull = new Tull(new Vehicle(Vehicle.VehicleType.Car, 1500), new DateTime(2018, 05, 12, 17,00,00));
 
             Assert.AreEqual(2000, tull.TotalPriceCalculator());
         }
         [TestMethod]
-        public void TestWeekend()
+        public void TestWeekendPrice()
         {
-            Tull tull = new Tull(new Vehicle(Vehicle.VehicleType.Car, 1500), new DateTime(2018, 05, 11));
+            Tull tull = new Tull(new Vehicle(Vehicle.VehicleType.Car, 1500), new DateTime(2018, 05, 11,19,00,00));
             Assert.IsFalse(tull.IsWeekend());
         }
 
         [TestMethod]
-        public void EcoCarTest()
+        public void EcoCarPriceTest()
         {
-            Tull tull = new Tull(new Vehicle(Vehicle.VehicleType.Car, 1500), new DateTime(2018, 05, 11));
-            Assert.AreEqual(1000, tull.TotalPriceCalculator());
+            Tull tull = new Tull(new Vehicle(Vehicle.VehicleType.EcoCar, 1500), new DateTime(2018, 05, 11, 17,00,00));
+            Assert.AreEqual(0, tull.TotalPriceCalculator());
         }
 
         [TestMethod]
@@ -50,6 +50,13 @@ namespace TullTest
         }
 
         [TestMethod]
+        public void MCPrice()
+        {
+            Tull tull = new Tull(new Vehicle(Vehicle.VehicleType.MC, 900), new DateTime(2018, 05, 11, 15, 00, 00));
+            Assert.AreEqual(350, tull.TotalPriceCalculator());
+        }
+
+        [TestMethod]
         public void EveningPriceMC()
         {
             Tull tull = new Tull(new Vehicle(Vehicle.VehicleType.MC, 1500), new DateTime(2018, 05, 11, 19, 00, 00));
@@ -61,6 +68,13 @@ namespace TullTest
         {
             Tull tull = new Tull(new Vehicle(Vehicle.VehicleType.Truck, 1500), new DateTime(2018, 05, 11, 15,00,00));
             Assert.AreEqual(2000, tull.TotalPriceCalculator());
+        }
+
+        [TestMethod]
+        public void IsWeekendTest()
+        {
+            Tull tull = new Tull(new Vehicle(Vehicle.VehicleType.Truck, 1500), new DateTime(2018, 05, 13, 19, 00, 00));
+            Assert.IsTrue(tull.IsWeekend());
         }
     }
 }
