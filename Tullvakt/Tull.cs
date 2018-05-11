@@ -19,17 +19,22 @@ namespace Tullvakt
         private const int heavyCarPrice = 1000;
         const double eveningPriceAdjustment = 0.5;
         private const int truckPrice = 2000;
-        const double priceAdjustmentForMC = 0.3;
+        const double priceAdjustmentForMC = 0.7;
         private const double weekendPriceAdjustment = 2;
-        private const int ecoCarPrice = 0;
+        //private const int ecoCarPrice = 0;
 
-        public double CalculatePrice()
+        public double TotalPriceCalculator()
         {
             
             double price = 0;
-            double basePrice = CheckBasePrice();
+            double basePrice = BasePriceCalculator();
             bool isWeekend = IsWeekend();
             bool isEvening = IsEvening();
+            if (!isEvening && !isWeekend)
+            {
+                price = basePrice;
+            }
+            
             if (isWeekend)
             {
                 price = basePrice * weekendPriceAdjustment;
@@ -65,7 +70,7 @@ namespace Tullvakt
             return price;
         }
 
-        public double CheckBasePrice()
+        public double BasePriceCalculator()
         {
             double basePrice = 0;
             if (Vehicle.Type == Vehicle.VehicleType.EcoCar)
@@ -84,13 +89,16 @@ namespace Tullvakt
             {
                 basePrice = truckPrice;
             }
-            else if (Vehicle.Type == Vehicle.VehicleType.MC) //&& Vehicle.Weight < 1000)
+            else if (Vehicle.Type == Vehicle.VehicleType.MC && Vehicle.Weight > 1000)
             {
-                basePrice = basePrice * priceAdjustmentForMC;
+                basePrice = heavyCarPrice * priceAdjustmentForMC;
             }
-            //else if (Vehicle.Type == Vehicle.VehicleType.MC && Vehicle.Weight <)
+            else if (Vehicle.Type == Vehicle.VehicleType.MC && Vehicle.Weight <= 1000)
+            {
+                basePrice = lightWeightCarPrice * priceAdjustmentForMC;
+            }
 
-            return basePrice;
+                return basePrice;
         }
         public bool IsWeekend()
         {
@@ -108,8 +116,13 @@ namespace Tullvakt
 
         public bool IsEvening()
         {
+            bool isWeekend = IsWeekend();
             bool isEvening;
-            if (DateTime.Hour >= 18 || DateTime.Hour < 6)
+            if (isWeekend)
+            {
+                isEvening = false;
+            }
+            else if (DateTime.Hour >= 18 || DateTime.Hour < 6)
             {
                 isEvening = true;
             }
