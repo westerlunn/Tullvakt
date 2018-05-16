@@ -16,12 +16,6 @@ namespace TullTest
 
             Assert.AreEqual(2000, tull.TotalPriceCalculator());
         }
-        [TestMethod]
-        public void TestWeekendPrice()
-        {
-            Tull tull = new Tull(new Vehicle(Vehicle.VehicleType.Car, 1500), new DateTime(2018, 05, 11,19,00,00));
-            Assert.IsFalse(tull.IsWeekend());
-        }
 
         [TestMethod]
         public void EcoCarPriceTest()

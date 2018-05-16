@@ -53,7 +53,7 @@ namespace Tullvakt
         }
 
         //TODO returnera så fort som möjligt (i övriga metoder också)
-        public double BasePriceCalculator()
+        private double BasePriceCalculator()
         {
             double basePrice = 0;
             if (Vehicle.Type == Vehicle.VehicleType.EcoCar)
@@ -69,10 +69,8 @@ namespace Tullvakt
             if (Vehicle.Type == Vehicle.VehicleType.MC && Vehicle.Weight <= 1000)
                 return basePrice = LightWeightCarPrice * PriceAdjustmentForMc;
             return basePrice;
-
-            //return basePrice;
         }
-        public bool IsWeekend()
+        private bool IsWeekend()
         {
             bool isWeekend;
             if (DateTime.DayOfWeek == DayOfWeek.Saturday || DateTime.DayOfWeek == DayOfWeek.Sunday)
@@ -86,7 +84,7 @@ namespace Tullvakt
             return isWeekend;
         }
 
-        public bool IsEvening()
+        private bool IsEvening()
         {
             bool isWeekend = IsWeekend();
             bool isEvening;
