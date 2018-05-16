@@ -4,8 +4,10 @@ using Tullvakt;
 
 namespace TullTest
 {
+    //TODO bättre namn på testerna. Man ska se exakt vad som testas.
+    //TODO magic numbers i testmetoderna. Deklarera variablerna.
     [TestClass]
-    public class UnitTest1
+    public class TestRulesForTull
     {
         [TestMethod]
         public void TestWeekendPriceForHeavyCar()
