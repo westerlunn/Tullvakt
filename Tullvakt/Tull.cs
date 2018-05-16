@@ -74,14 +74,8 @@ namespace Tullvakt
         {
             bool isWeekend;
             if (DateTime.DayOfWeek == DayOfWeek.Saturday || DateTime.DayOfWeek == DayOfWeek.Sunday)
-            {
-                isWeekend = true;
-            }
-            else
-            {
-                isWeekend = false;
-            }
-            return isWeekend;
+                return isWeekend = true;
+            return isWeekend = false;
         }
 
         private bool IsEvening()
